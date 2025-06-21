@@ -17,34 +17,35 @@ const googleLoing = async (req, res) => {
             `https://www.googleapis.com/oauth2/v3/userinfo?alt=json&access_token=${googelRes.tokens.access_token}`,
 
         );
-        // console.log("User info from Google:", userInfo.data);
+        console.log("User info from Google:", userInfo.data);
         const { email, name, picture } = userInfo.data;
         // console.log("User email:", email);
-        let user = await userModel.findOne({ email });
-        if (!user) {
-            user = await userModel.create({
-                username: name,
-                email,
-                Image: picture
-            });
-        }
-        const { _id } = user;
-        const token = jwt.sign({ _id, email },
-            process.env.JWT_SECRET,
-            { expiresIn: process.env.JWT_EXPIRY || '1d' }
-        );
-        console.log("Generated JWT token:", token);
+        // let user = await userModel.findOne({ email });
+        // if (!user) {
+        //     user = await userModel.create({
+        //         username: name,
+        //         email,
+        //         Image: picture
+        //     });
+        // }
+        // const { _id } = user;
+        // const token = jwt.sign({ _id, email },
+        //     process.env.JWT_SECRET,
+        //     { expiresIn: process.env.JWT_EXPIRY || '1d' }
+        // );
+        // console.log("Generated JWT token:", token);
 
-        return res.status(200).json({
-            message: "Login successful",
-            token,
-            user: {
-                _id,
-                username: user.username,
-                email: user.email,
-                Image: user.Image
-            }
-        })
+        // return res.status(200).json({
+        //     message: "Login successful",
+        //     token,
+        //     user: {
+        //         _id,
+        //         username: user.username,
+        //         email: user.email,
+        //         Image: user.Image
+        //     }
+        // })
+        res.status(200).json({ message: "Code Run" });
 
 
     } catch (error) {
