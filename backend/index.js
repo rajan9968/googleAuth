@@ -5,6 +5,8 @@ const authRouter = require('./routes/authRouter');
 require('dotenv').config();
 require('./models/dbConnection');
 const cors = require('cors');
+
+
 app.get('/', (req, res) => {
     res.send('Welcome to the backend server!');
 })
